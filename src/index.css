@@ -1,0 +1,63 @@
+/* Сброс */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* База */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f5f5f5;
+}
+
+.app {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Карточки */
+.card-wrapper {
+  margin-bottom: 10px;
+}
+
+.card {
+  padding: 12px;
+  border-radius: 8px;
+  background: white;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.card:hover {
+  transform: scale(1.01);
+}
+
+/* Цвет по статусу */
+.online-card {
+  border-left: 6px solid green;
+}
+
+.offline-card {
+  border-left: 6px solid red;
+}
+
+/* Детали */
+.details {
+  margin-top: 5px;
+  padding: 10px;
+  background: #ffffff;
+  border-left: 4px solid #333;
+}
+
+/* Статусы */
+.online {
+  color: green;
+  font-weight: bold;
+}
+
+.offline {
+  color: red;
+  font-weight: bold;
+}
