@@ -1,14 +1,12 @@
-/* Сброс */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* База */
 body {
-  font-family: Arial, sans-serif;
   background-color: #f5f5f5;
+  font-family: Arial, sans-serif;
 }
 
 .app {
@@ -17,24 +15,37 @@ body {
   padding: 20px;
 }
 
-/* Карточки */
-.card-wrapper {
-  margin-bottom: 10px;
+.nav {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.nav a {
+  color: #333;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.user-link {
+  text-decoration: none;
+  color: inherit;
 }
 
 .card {
-  padding: 12px;
-  border-radius: 8px;
   background: white;
+  padding: 15px;
+  margin-bottom: 12px;
+  border-radius: 8px;
   cursor: pointer;
   transition: 0.2s;
 }
 
 .card:hover {
   transform: scale(1.01);
+  background-color: #fafafa;
 }
 
-/* Цвет по статусу */
 .online-card {
   border-left: 6px solid green;
 }
@@ -43,15 +54,17 @@ body {
   border-left: 6px solid red;
 }
 
-/* Детали */
 .details {
-  margin-top: 5px;
-  padding: 10px;
-  background: #ffffff;
-  border-left: 4px solid #333;
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  border-left: 5px solid #333;
 }
 
-/* Статусы */
+.details p {
+  margin: 10px 0;
+}
+
 .online {
   color: green;
   font-weight: bold;
@@ -60,4 +73,18 @@ body {
 .offline {
   color: red;
   font-weight: bold;
+}
+
+button {
+  margin-top: 15px;
+  padding: 10px 18px;
+  border: none;
+  border-radius: 6px;
+  background-color: #333;
+  color: white;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #555;
 }

@@ -1,27 +1,24 @@
-import { useState } from "react";
-import UserList from "./UserList";
-import "./index.css";
+import { Link, Route, Routes } from "react-router-dom";
+import Home from "./pages/Home";
+import UsersPage from "./pages/UsersPage";
+import UserDetailsPage from "./pages/UserDetailsPage";
+import About from "./pages/About";
 
 function App() {
-  const [users] = useState([
-    { id: 1, name: "Александр", age: 28, role: "Developer", isOnline: true, description: "Frontend разработчик" },
-    { id: 2, name: "Ирина", age: 32, role: "Designer", isOnline: false, description: "UX/UI дизайнер" },
-    { id: 3, name: "Максим", age: 25, role: "QA", isOnline: true, description: "Тестировщик" },
-    { id: 4, name: "Ольга", age: 30, role: "Manager", isOnline: false, description: "Проект менеджер" },
-    { id: 5, name: "Дмитрий", age: 35, role: "DevOps", isOnline: true, description: "Инженер инфраструктуры" },
-  ]);
-
-  const [selectedId, setSelectedId] = useState(null);
-
   return (
     <div className="app">
-      <h1>Пользователи</h1>
+      <nav className="nav">
+        <Link to="/">Главная</Link>
+        <Link to="/users">Пользователи</Link>
+        <Link to="/about">О проекте</Link>
+      </nav>
 
-      <UserList
-        users={users}
-        selectedId={selectedId}
-        onSelectUser={setSelectedId}
-      />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/users" element={<UsersPage />} />
+        <Route path="/users/:id" element={<UserDetailsPage />} />
+        <Route path="/about" element={<About />} />
+      </Routes>
     </div>
   );
 }
