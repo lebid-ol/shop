@@ -1,27 +1,29 @@
+import { Card, Button, Tag } from "antd";
 import { Link } from "react-router-dom";
 
 function UserList({ users }) {
   return (
-    <div>
+    <>
       {users.map((user) => (
-        <Link
+        <Card
           key={user.id}
-          to={`/users/${user.id}`}
-          className="user-link"
+          style={{ marginBottom: 16 }}
+          title={user.name}
         >
-          <div className={`card ${user.isOnline ? "online-card" : "offline-card"}`}>
-            <h3>{user.name}</h3>
+          <p>Роль: {user.role}</p>
 
-            <p>
-              Статус:{" "}
-              <span className={user.isOnline ? "online" : "offline"}>
-                {user.isOnline ? "Онлайн" : "Оффлайн"}
-              </span>
-            </p>
-          </div>
-        </Link>
+          <Tag color={user.isOnline ? "green" : "red"}>
+            {user.isOnline ? "Онлайн" : "Оффлайн"}
+          </Tag>
+
+          <br /><br />
+
+          <Button type="primary">
+            <Link to={`/users/${user.id}`}>Подробнее</Link>
+          </Button>
+        </Card>
       ))}
-    </div>
+    </>
   );
 }
 

@@ -1,19 +1,29 @@
+import { Layout, Typography, Spin, Alert } from "antd";
 import { useUsers } from "../context/UsersContext";
 import UserList from "../components/UserList";
+
+const { Content } = Layout;
+const { Title } = Typography;
 
 function UsersPage() {
   const { users, loading } = useUsers();
 
   if (loading) {
-    return <h2>Загрузка пользователей...</h2>;
+    return <Spin size="large" style={{ margin: "50px" }} />;
+  }
+
+  if (!users.length) {
+    return <Alert message="Пользователи не найдены" type="info" />;
   }
 
   return (
-    <div>
-      <h1>Пользователи</h1>
-      <UserList users={users} />
-    </div>
+    <Layout>
+      <Content style={{ padding: "40px" }}>
+        <Title>Пользователи</Title>
+        <UserList users={users} />
+      </Content>
+    </Layout>
   );
 }
 
-export default UsersPage;
+export default UsersPage; 

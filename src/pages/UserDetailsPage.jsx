@@ -1,49 +1,52 @@
-import { Link, useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { useUsers } from "../context/UsersContext";
+import { Layout, Card, Button, Tag, Spin, Alert } from "antd";
+
+const { Content } = Layout;
 
 function UserDetailsPage() {
   const { id } = useParams();
   const { users, loading, toggleUserStatus } = useUsers();
 
   if (loading) {
-    return <h2>Загрузка пользователя...</h2>;
+    return <Spin size="large" />;
   }
 
-  const user = users.find((user) => user.id === Number(id));
+  const user = users.find((u) => u.id === Number(id));
 
   if (!user) {
-    return (
-      <div>
-        <h2>Пользователь не найден</h2>
-        <Link to="/users">Вернуться к списку</Link>
-      </div>
-    );
+    return <Alert message="Пользователь не найден" type="error" />;
   }
 
   return (
-    <div className="details">
-      <h1>{user.name}</h1>
+    <Layout>
+      <Content style={{ padding: "40px" }}>
+        <Card title={user.name}>
+          <p>Возраст: {user.age}</p>
+          <p>Роль: {user.role}</p>
+          <p>{user.description}</p>
 
-      <p><strong>Возраст:</strong> {user.age}</p>
-      <p><strong>Роль:</strong> {user.role}</p>
-      <p><strong>Описание:</strong> {user.description}</p>
+          <Tag color={user.isOnline ? "green" : "red"}>
+            {user.isOnline ? "Онлайн" : "Оффлайн"}
+          </Tag>
 
-      <p>
-        <strong>Статус:</strong>{" "}
-        <span className={user.isOnline ? "online" : "offline"}>
-          {user.isOnline ? "Онлайн" : "Оффлайн"}
-        </span>
-      </p>
+          <br /><br />
 
-      <button onClick={() => toggleUserStatus(user.id)}>
-        Изменить статус
-      </button>
+          <Button
+            type="primary"
+            onClick={() => toggleUserStatus(user.id)}
+          >
+            Изменить статус
+          </Button>
 
-      <br />
-      <br />
+          <br /><br />
 
-      <Link to="/users">Назад к пользователям</Link>
-    </div>
+          <Button>
+            <Link to="/users">Назад</Link>
+          </Button>
+        </Card>
+      </Content>
+    </Layout>
   );
 }
 
